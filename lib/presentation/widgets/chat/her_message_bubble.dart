@@ -29,8 +29,6 @@ class HerMessageBubble extends StatelessWidget {
         const SizedBox(height: 5),
         _ImageBubble(),
         const SizedBox(height: 10),
-
-        //Todo: imagen
       ],
     );
   }
@@ -47,7 +45,23 @@ class _ImageBubble extends StatelessWidget {
         'https://yesno.wtf/assets/yes/11-a23cbde4ae018bbda812d2d8b2b8fc6c.gif',
         width: size.width * 0.7,
         height: 150,
-        fit: BoxFit.cover
+        fit: BoxFit.cover,
+        loadingBuilder: (context, child, loadingProgress) {
+          //Si ya consumió, retorna el child que es la respuesta del consumo
+          if (loadingProgress == null) return child;
+
+          return Container(
+            width: size.width * 0.7,
+            height: 150,
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: const Center(
+              child: Text(
+                'Argemiro está subiendo un memazo...',
+                textAlign: TextAlign.center,
+              ),
+            ),
+          );
+        },
       ),
     );
   }
