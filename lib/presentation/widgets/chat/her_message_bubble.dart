@@ -30,7 +30,7 @@ class HerMessageBubble extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 5),
-        _ImageBubble(),
+        _ImageBubble(textMessage: textMessage),
         const SizedBox(height: 10),
       ],
     );
@@ -38,6 +38,10 @@ class HerMessageBubble extends StatelessWidget {
 }
 
 class _ImageBubble extends StatelessWidget {
+  final Message textMessage;
+
+  const _ImageBubble({required this.textMessage});
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -45,7 +49,7 @@ class _ImageBubble extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Image.network(
-        'https://yesno.wtf/assets/yes/11-a23cbde4ae018bbda812d2d8b2b8fc6c.gif',
+        textMessage.imageUrl!,
         width: size.width * 0.7,
         height: 150,
         fit: BoxFit.cover,
