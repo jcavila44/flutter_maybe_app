@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_maybe_app/domain/entities/message.dart';
 
 class MyMessageBubble extends StatelessWidget {
-  const MyMessageBubble({super.key});
+  final Message textMessage;
+
+  const MyMessageBubble({super.key, required this.textMessage});
 
   @override
   Widget build(BuildContext context) {
-    
-    final colors = Theme.of(context).colorScheme; //Son los estilos creados desde el Theme
+    final colors =
+        Theme.of(context).colorScheme; //Son los estilos creados desde el Theme
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -16,11 +19,11 @@ class MyMessageBubble extends StatelessWidget {
             color: colors.primary,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
-              'Aliqua laboris magnae.',
-              style: TextStyle(
+              textMessage.text,
+              style: const TextStyle(
                 color: Colors.white,
               ),
             ),
